@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info Tiket - CineBook</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .info-section {
+            min-height: 80vh;
+            padding: 120px 8% 60px;
+            background: #090b16;
+            color: white;
+        }
+
+        .info-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .info-title h1 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .info-title p {
+            color: #aaa;
+        }
+
+        .ticket-container {
+            max-width: 1000px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .ticket-card {
+            background: #121626;
+            border: 1px solid #292e42;
+            border-radius: 18px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .ticket-card:hover {
+            transform: translateY(-8px);
+            border-color: #e50914;
+            box-shadow: 0 10px 30px rgba(229, 9, 20, 0.2);
+        }
+
+        .ticket-icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .ticket-card h3 {
+            color: #aaa;
+            font-size: 17px;
+            margin-bottom: 12px;
+        }
+
+        .ticket-number {
+            font-size: 40px;
+            font-weight: bold;
+            color: #e50914;
+        }
+
+        .ticket-info {
+            max-width: 1000px;
+            margin: 35px auto 0;
+            background: #121626;
+            border-radius: 18px;
+            padding: 25px;
+        }
+
+        .ticket-info h2 {
+            margin-bottom: 15px;
+        }
+
+        .ticket-info p {
+            color: #bbb;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 768px) {
+            .ticket-container {
+                grid-template-columns: 1fr;
+            }
+
+            .info-title h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <div class="logo">
+            🎬 Cine<span>Book</span>
+        </div>
+
+        <div class="nav-menu">
+            <a href="index.html">Home</a>
+            <a href="index.html#film">Film</a>
+            <a href="booking.html">Reservasi</a>
+            <a href="riwayat.html">Riwayat</a>
+            <a href="info-tiket.html" class="active">
+                Info Tiket
+            </a>
+            <a href="index.html#tentang">Tentang</a>
+        </div>
+
+        <div id="userArea"></div>
+
+    </nav>
+
+
+    <!-- INFORMASI TIKET -->
+    <section class="info-section">
+
+        <div class="info-title">
+            <h1>🎟️ Informasi Tiket</h1>
+            <p>
+                Informasi jumlah tiket dan transaksi CineBook
+            </p>
+        </div>
+
+
+        <div class="ticket-container">
+
+            <!-- TOTAL TIKET -->
+            <div class="ticket-card">
+
+                <div class="ticket-icon">
+                    🎟️
+                </div>
+
+                <h3>Total Tiket Dipesan</h3>
+
+                <div class="ticket-number" id="totalTiket">
+                    0
+                </div>
+
+            </div>
+
+
+            <!-- TOTAL TRANSAKSI -->
+            <div class="ticket-card">
+
+                <div class="ticket-icon">
+                    📋
+                </div>
+
+                <h3>Total Transaksi</h3>
+
+                <div class="ticket-number" id="totalTransaksi">
+                    0
+                </div>
+
+            </div>
+
+
+            <!-- TOTAL PENDAPATAN -->
+            <div class="ticket-card">
+
+                <div class="ticket-icon">
+                    💰
+                </div>
+
+                <h3>Total Pendapatan</h3>
+
+                <div class="ticket-number" id="totalPendapatan">
+                    Rp 0
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="ticket-info">
+
+            <h2>📊 Detail Informasi</h2>
+
+            <p>
+                Halaman ini menampilkan jumlah keseluruhan tiket
+                yang telah dipesan melalui CineBook.
+            </p>
+
+            <p>
+                Data tiket diambil secara otomatis dari
+                <b>Riwayat Pembelian</b>.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="script.js"></script>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // Ambil data riwayat
+            const riwayat =
+                JSON.parse(
+                    localStorage.getItem("riwayatCineBook")
+                ) || [];
+
+
+            let totalTiket = 0;
+            let totalPendapatan = 0;
+
+
+            // Hitung data
+            riwayat.forEach(function (transaksi) {
+
+                // Menghitung jumlah kursi
+                let jumlahKursi = 0;
+
+                if (transaksi.seats) {
+
+                    if (Array.isArray(transaksi.seats)) {
+                        jumlahKursi = transaksi.seats.length;
+                    } 
+                    else {
+                        jumlahKursi =
+                            transaksi.seats
+                                .split(",")
+                                .filter(Boolean)
+                                .length;
+                    }
+
+                }
+
+                totalTiket += jumlahKursi;
+
+
+                // Hitung pendapatan
+                if (transaksi.total) {
+
+                    let total =
+                        Number(
+                            String(transaksi.total)
+                                .replace(/\D/g, "")
+                        );
+
+                    totalPendapatan += total;
+                }
+
+            });
+
+
+            // Tampilkan data
+            document.getElementById("totalTiket")
+                .textContent = totalTiket;
+
+
+            document.getElementById("totalTransaksi")
+                .textContent = riwayat.length;
+
+
+            document.getElementById("totalPendapatan")
+                .textContent =
+                "Rp " +
+                totalPendapatan.toLocaleString("id-ID");
+
+        });
+
+    </script>
+
+</body>
+</html>

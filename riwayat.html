@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Pembelian - CineBook</title>
+    <link rel="stylesheet" href="style.css">
+
+<script>
+(function () {
+    const user = JSON.parse(
+        localStorage.getItem("cinebookUser") ||
+        sessionStorage.getItem("cinebookUser") ||
+        "null"
+    );
+
+    if (!user) {
+        alert("Silakan login terlebih dahulu untuk melihat riwayat pembelian.");
+        window.location.href = "login.html";
+    }
+})();
+</script>
+
+</head>
+<body>
+
+<header>
+    <div class="logo">🎬 Cine<span>Book</span></div>
+
+    <nav>
+        <a href="index.html#home">Home</a>
+        <a href="index.html#film">Film</a>
+        <a href="index.html#booking">Reservasi</a>
+        <a href="riwayat.html">Riwayat</a>
+        <a href="index.html#about">Tentang</a>
+    </nav>
+
+    <button class="login-btn" onclick="window.location.href='login.html'">
+        Login
+    </button>
+</header>
+
+<section class="history-section">
+    <div class="section-title">
+        <p>MY PURCHASES</p>
+        <h2>Riwayat Pembelian</h2>
+    </div>
+
+    <div class="history-actions">
+        <a href="index.html#film" class="history-btn">🎬 Pesan Tiket Lagi</a>
+        <button class="history-btn danger" onclick="hapusSemuaRiwayat()">
+            🗑 Hapus Semua Riwayat
+        </button>
+    </div>
+
+    <div id="historyList" class="history-list"></div>
+</section>
+
+<footer>
+    <h3>🎬 CineBook</h3>
+    <p>© 2026 CineBook. Online Cinema Reservation.</p>
+</footer>
+
+<script>
+function formatRupiah(angka) {
+    return "Rp " + Number(angka).toLocaleString("id-ID");
+}
+
+function tampilkanRiwayat() {
+    const container = document.getElementById("historyList");
+    const riwayat = JSON.parse(
+        localStorage.getItem("riwayatCineBook") || "[]"
+    );
+
+    if (riwayat.length === 0) {
+        container.innerHTML = `
+            <div class="empty-history">
+                <div class="empty-icon">🎟️</div>
+                <h3>Belum ada riwayat pembelian</h3>
+                <p>Pesanan tiket yang berhasil akan muncul di halaman ini.</p>
+                <a href="index.html#film" class="history-btn">
+                    🎬 Lihat Film
+                </a>
+            </div>
+        `;
+        return;
+    }
+
+    container.innerHTML = riwayat.map((item, index) => `
+        <div class="history-card">
+            <div class="history-header">
+                <div>
+                    <span class="history-number">Pesanan #${riwayat.length - index}</span>
+                    <h3>${escapeHtml(item.film)}</h3>
+                </div>
+                <span class="status-badge">✓ Berhasil</span>
+            </div>
+
+            <div class="history-grid">
+                <div>
+                    <small>ID Transaksi</small>
+                    <strong>${escapeHtml(item.id || "-")}</strong>
+                </div>
+                <div>
+                    <small>Bioskop</small>
+                    <strong>${escapeHtml(item.bioskop)}</strong>
+                </div>
+                <div>
+                    <small>Tanggal</small>
+                    <strong>${escapeHtml(item.tanggal)}</strong>
+                </div>
+                <div>
+                    <small>Jam</small>
+                    <strong>${escapeHtml(item.jam)}</strong>
+                </div>
+                <div>
+                    <small>Kursi</small>
+                    <strong>${escapeHtml((item.kursi || []).join(", "))}</strong>
+                </div>
+                <div>
+                    <small>Pemesan</small>
+                    <strong>${escapeHtml(item.nama)}</strong>
+                </div>
+            </div>
+
+            <div class="history-footer">
+                <span>Dibeli: ${escapeHtml(item.waktuPembelian || "-")}</span>
+                <strong>${formatRupiah(item.total)}</strong>
+            </div>
+
+            <button class="delete-one" onclick="hapusRiwayat(${index})">
+                Hapus Pesanan
+            </button>
+        </div>
+    `).join("");
+}
+
+function escapeHtml(value) {
+    return String(value ?? "").replace(/[&<>"']/g, function(char) {
+        return {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#039;"
+        }[char];
+    });
+}
+
+function hapusRiwayat(index) {
+    let riwayat = JSON.parse(
+        localStorage.getItem("riwayatCineBook") || "[]"
+    );
+
+    if (!confirm("Hapus pesanan ini dari riwayat?")) return;
+
+    riwayat.splice(index, 1);
+    localStorage.setItem("riwayatCineBook", JSON.stringify(riwayat));
+    tampilkanRiwayat();
+}
+
+function hapusSemuaRiwayat() {
+    const riwayat = JSON.parse(
+        localStorage.getItem("riwayatCineBook") || "[]"
+    );
+
+    if (riwayat.length === 0) {
+        alert("Riwayat pembelian masih kosong.");
+        return;
+    }
+
+    if (!confirm("Yakin ingin menghapus semua riwayat pembelian?")) return;
+
+    localStorage.removeItem("riwayatCineBook");
+    tampilkanRiwayat();
+}
+
+tampilkanRiwayat();
+</script>
+
+</body>
+</html>

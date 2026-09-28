@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineBook - Reservasi Tiket Bioskop</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ANIMASI LABA-LABA -->
+<div class="spider spider-1">
+    <div class="web-line"></div>
+    <div class="spider-body">🕷️</div>
+</div>
+
+<div class="spider spider-2">
+    <div class="web-line"></div>
+    <div class="spider-body">🕷️</div>
+</div>
+
+<div class="spider spider-3">
+    <div class="web-line"></div>
+    <div class="spider-body">🕷️</div>
+</div>
+
+<!-- NAVBAR -->
+<header>
+    <div class="logo">🎬 Cine<span>Book</span></div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#film">Film</a>
+        <a href="#booking">Reservasi</a>
+        <a href="riwayat.html">Riwayat</a>
+        <a href="#about">Tentang</a>
+    </nav>
+
+    <div id="userArea"><button class="login-btn" onclick="window.location.href='login.html'">Login</button></div>
+</header>
+
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <p class="subtitle">WELCOME TO CINEBOOK</p>
+
+        <h1>Nonton Film Jadi<br>
+            <span>Lebih Mudah</span>
+        </h1>
+
+        <p>
+            Pesan tiket bioskop favoritmu secara online.
+            Pilih film, bioskop, jadwal, dan kursi dengan mudah.
+        </p>
+
+        <a href="#film" class="hero-btn">🎟 Pesan Tiket</a>
+    </div>
+</section>
+
+
+<!-- FILM -->
+<section class="film-section" id="film">
+
+    <div class="section-title">
+        <p>NOW SHOWING</p>
+        <h2>Film Sedang Tayang</h2>
+    </div>
+
+
+  <div class="film-container">
+
+    <!-- 1. Deadpool -->
+    <div class="film-card">
+        <img 
+            src="https://image.tmdb.org/t/p/w500/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg"
+            alt="Deadpool & Wolverine"
+            onerror="this.src='https://placehold.co/500x750/111827/ffffff?text=Deadpool'">
+        <div class="film-info">
+            <h3>Deadpool & Wolverine</h3>
+            <p>Action • Comedy</p>
+            <div class="rating">⭐ 8.1/10</div>
+            <button onclick="pilihFilm('Deadpool & Wolverine')">
+                Pesan Tiket
+            </button>
+        </div>
+    </div>
+
+
+    <!-- 2. Inside Out 2 -->
+    <div class="film-card">
+        <img 
+            src="https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg"
+            alt="Inside Out 2"
+            onerror="this.src='https://placehold.co/500x750/111827/ffffff?text=Inside+Out+2'">
+        <div class="film-info">
+            <h3>Inside Out 2</h3>
+            <p>Animation • Family</p>
+            <div class="rating">⭐ 8.0/10</div>
+            <button onclick="pilihFilm('Inside Out 2')">
+                Pesan Tiket
+            </button>
+        </div>
+    </div>
+
+
+    <!-- 3. Godzilla x Kong -->
+    <div class="film-card">
+        <img 
+            src="https://image.tmdb.org/t/p/w500/z1p34vh7dEOnLDmyCrlUVLuoDzd.jpg"
+            alt="Godzilla x Kong"
+            onerror="this.src='https://placehold.co/500x750/111827/ffffff?text=Godzilla+x+Kong'">
+        <div class="film-info">
+            <h3>Godzilla x Kong</h3>
+            <p>Action • Adventure</p>
+            <div class="rating">⭐ 7.8/10</div>
+            <button onclick="pilihFilm('Godzilla x Kong')">
+                Pesan Tiket
+            </button>
+        </div>
+    </div>
+
+
+    <!-- 4. Spider-Man -->
+    <div class="film-card">
+        <img 
+            src="https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
+            alt="Spider-Man: No Way Home"
+            onerror="this.src='https://placehold.co/500x750/111827/ffffff?text=Spider-Man'">
+        <div class="film-info">
+            <h3>Spider-Man: No Way Home</h3>
+            <p>Action • Adventure • Sci-Fi</p>
+            <div class="rating">⭐ 7.9/10</div>
+            <button onclick="pilihFilm('Spider-Man: No Way Home')">
+                Pesan Tiket
+            </button>
+        </div>
+    </div>
+
+
+    <!-- 5. Interstellar -->
+    <div class="film-card">
+        <img 
+            src="https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg"
+            alt="Interstellar"
+            onerror="this.src='https://placehold.co/500x750/111827/ffffff?text=Interstellar'">
+        <div class="film-info">
+            <h3>Interstellar</h3>
+            <p>Sci-Fi • Drama</p>
+            <div class="rating">⭐ 8.7/10</div>
+            <button onclick="pilihFilm('Interstellar')">
+                Pesan Tiket
+            </button>
+        </div>
+    </div>
+
+
+    <!-- 6. Avengers -->
+    <div class="film-card">
+        <img 
+            src="https://image.tmdb.org/t/p/w500/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg"
+            alt="Avengers Infinity War"
+            onerror="this.src='https://placehold.co/500x750/111827/ffffff?text=Avengers'">
+        <div class="film-info">
+            <h3>Avengers: Infinity War</h3>
+            <p>Action • Fantasy</p>
+            <div class="rating">⭐ 8.2/10</div>
+            <button onclick="pilihFilm('Avengers: Infinity War')">
+                Pesan Tiket
+            </button>
+        </div>
+    </div>
+
+
+    <!-- 7. John Wick -->
+    <div class="film-card">
+        <img 
+            src="https://image.tmdb.org/t/p/w500/7mD9W3wWkZ3vG0hFJ6M7wG4F0kG.jpg"
+            alt="John Wick Chapter 4"
+            onerror="this.src='https://placehold.co/500x750/111827/ffffff?text=John+Wick+4'">
+        <div class="film-info">
+            <h3>John Wick: Chapter 4</h3>
+            <p>Action • Thriller</p>
+            <div class="rating">⭐ 7.7/10</div>
+            <button onclick="pilihFilm('John Wick: Chapter 4')">
+                Pesan Tiket
+            </button>
+        </div>
+    </div>
+
+
+    <!-- 8. Barbie -->
+    <div class="film-card">
+        <img 
+            src="https://image.tmdb.org/t/p/w500/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg"
+            alt="Barbie"
+            onerror="this.src='https://placehold.co/500x750/111827/ffffff?text=Barbie'">
+        <div class="film-info">
+            <h3>Barbie</h3>
+            <p>Comedy • Fantasy</p>
+            <div class="rating">⭐ 7.0/10</div>
+            <button onclick="pilihFilm('Barbie')">
+                Pesan Tiket
+            </button>
+        </div>
+    </div>
+
+
+    <!-- 9. The Batman -->
+    <div class="film-card">
+        <img 
+            src="https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg"
+            alt="The Batman"
+            onerror="this.src='https://placehold.co/500x750/111827/ffffff?text=The+Batman'">
+        <div class="film-info">
+            <h3>The Batman</h3>
+            <p>Action • Crime</p>
+            <div class="rating">⭐ 7.7/10</div>
+            <button onclick="pilihFilm('The Batman')">
+                Pesan Tiket
+            </button>
+        </div>
+    </div>
+
+
+    <!-- 10. Your Name -->
+    <div class="film-card">
+        <img 
+            src="https://image.tmdb.org/t/p/w500/q719jXXEzOoYaps6babgKnONONX.jpg"
+            alt="Your Name"
+            onerror="this.src='https://placehold.co/500x750/111827/ffffff?text=Your+Name'">
+        <div class="film-info">
+            <h3>Your Name</h3>
+            <p>Animation • Romance</p>
+            <div class="rating">⭐ 8.4/10</div>
+            <button onclick="pilihFilm('Your Name')">
+                Pesan Tiket
+            </button>
+        </div>
+    </div>
+
+<a href="tiket-tersedia.html">Tiket Tersedia</a>
+
+</div>
+<!-- RESERVASI -->
+<section class="booking-section" id="booking">
+
+    <div class="section-title">
+        <p>ONLINE BOOKING</p>
+        <h2>Reservasi Tiket</h2>
+    </div>
+
+    <div class="booking-box">
+
+        <!-- DATA FILM -->
+        <div class="form-group">
+            <label>🎬 Pilih Film</label>
+
+            <select id="filmSelect">
+                <option value="">-- Pilih Film --</option>
+                <option value="Deadpool & Wolverine">
+                    Deadpool & Wolverine
+                </option>
+
+                <option value="Inside Out 2">
+                    Inside Out 2
+                </option>
+
+                <option value="Godzilla x Kong">
+                    Godzilla x Kong
+                </option>
+                <option value="Spider-Man: No Way Home">Spider-Man: No Way Home</option>
+                <option value="Interstellar">Interstellar</option>
+                <option value="Avengers: Infinity War">Avengers: Infinity War</option>
+                <option value="John Wick: Chapter 4">John Wick: Chapter 4</option>
+                <option value="Barbie">Barbie</option>
+                <option value="The Batman">The Batman</option>
+            </select>
+        </div>
+
+
+        <!-- BIOSKOP -->
+        <div class="form-group">
+            <label>🏢 Pilih Bioskop</label>
+
+            <select id="bioskop">
+                <option value="">-- Pilih Bioskop --</option>
+                <option value="CineBook Mall Batam">
+                    CineBook Mall Batam
+                </option>
+
+                <option value="CineBook Mega Mall">
+                    CineBook Mega Mall
+                </option>
+
+                <option value="CineBook Nagoya">
+                    CineBook Nagoya
+                </option>
+            </select>
+        </div>
+
+
+        <!-- TANGGAL -->
+        <div class="form-group">
+
+            <label>📅 Tanggal</label>
+
+            <input type="date" id="tanggal">
+
+        </div>
+
+
+        <!-- JAM -->
+        <div class="form-group">
+
+            <label>⏰ Pilih Jam</label>
+
+            <select id="jam">
+
+                <option value="">-- Pilih Jam --</option>
+
+                <option value="12:00">12:00</option>
+
+                <option value="14:30">14:30</option>
+
+                <option value="17:00">17:00</option>
+
+                <option value="19:30">19:30</option>
+
+                <option value="21:30">21:30</option>
+
+            </select>
+
+        </div>
+
+
+        <!-- KURSI -->
+        <div class="seat-section">
+
+            <h3>💺 Pilih Kursi</h3>
+
+            <div class="screen">
+                SCREEN
+            </div>
+
+            <div class="seats">
+
+                <button class="seat">A1</button>
+                <button class="seat">A2</button>
+                <button class="seat">A3</button>
+                <button class="seat">A4</button>
+                <button class="seat occupied">A5</button>
+                <button class="seat occupied">A6</button>
+
+                <button class="seat">B1</button>
+                <button class="seat">B2</button>
+                <button class="seat">B3</button>
+                <button class="seat">B4</button>
+                <button class="seat">B5</button>
+                <button class="seat">B6</button>
+
+                <button class="seat">C1</button>
+                <button class="seat occupied">C2</button>
+                <button class="seat">C3</button>
+                <button class="seat">C4</button>
+                <button class="seat">C5</button>
+                <button class="seat">C6</button>
+
+                <button class="seat">D1</button>
+                <button class="seat">D2</button>
+                <button class="seat">D3</button>
+                <button class="seat">D4</button>
+                <button class="seat">D5</button>
+                <button class="seat">D6</button>
+
+            </div>
+
+            <div class="seat-info">
+
+                <span>
+                    <i class="available"></i>
+                    Tersedia
+                </span>
+
+                <span>
+                    <i class="selected"></i>
+                    Dipilih
+                </span>
+
+                <span>
+                    <i class="sold"></i>
+                    Terisi
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- NAMA -->
+        <div class="form-group">
+
+            <label>👤 Nama Pemesan</label>
+
+            <input
+                type="text"
+                id="nama"
+                placeholder="Masukkan nama lengkap"
+            >
+
+        </div>
+
+
+        <!-- EMAIL -->
+        <div class="form-group">
+
+            <label>📧 Email</label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="contoh@email.com"
+            >
+
+        </div>
+
+
+        <!-- TOTAL -->
+        <div class="total-box">
+
+            <p>Total Tiket</p>
+
+            <h2 id="total">
+                Rp 0
+            </h2>
+
+        </div>
+
+
+        <button class="booking-btn" onclick="pesanTiket()">
+            🎟 Konfirmasi Reservasi
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- TIKET -->
+<section class="ticket-section" id="ticket">
+
+    <div class="ticket" id="ticketContent">
+
+        <div class="ticket-header">
+            🎬 CINEBOOK
+        </div>
+
+        <div class="ticket-body">
+
+            <h2 id="ticketFilm">
+                -
+            </h2>
+
+            <p id="ticketCinema">
+                -
+            </p>
+
+            <div class="ticket-grid">
+
+                <div>
+                    <small>Tanggal</small>
+                    <strong id="ticketDate">-</strong>
+                </div>
+
+                <div>
+                    <small>Jam</small>
+                    <strong id="ticketTime">-</strong>
+                </div>
+
+                <div>
+                    <small>Kursi</small>
+                    <strong id="ticketSeat">-</strong>
+                </div>
+
+                <div>
+                    <small>Pemesan</small>
+                    <strong id="ticketName">-</strong>
+                </div>
+
+            </div>
+
+            <div class="barcode">
+                █ ▌██ ▌█ ██ ▌███ ▌█ ██
+            </div>
+
+            <p class="success">
+                ✓ Reservasi Berhasil
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+<section class="about" id="about">
+
+    <h2>Tentang CineBook</h2>
+
+    <p>
+        CineBook adalah website reservasi tiket bioskop online
+        yang memudahkan pengguna untuk memilih film, bioskop,
+        jadwal, serta kursi sebelum menonton.
+    </p>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <h3>🎬 CineBook</h3>
+
+    <p>
+        © 2026 CineBook. Online Cinema Reservation.
+    </p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+
+
+
+
+<script>
+function getCineBookUser() {
+    return JSON.parse(
+        localStorage.getItem("cinebookUser") ||
+        sessionStorage.getItem("cinebookUser") ||
+        "null"
+    );
+}
+
+function updateLoginMenu() {
+    const userArea = document.getElementById("userArea");
+    if (!userArea) return;
+
+    const user = getCineBookUser();
+
+    if (user) {
+        userArea.innerHTML = `
+            <div class="user-menu">
+                <span class="user-welcome">👤 ${user.username}</span>
+                <button class="login-btn logout-btn" onclick="logoutCineBook()">
+                    Logout
+                </button>
+            </div>
+        `;
+    } else {
+        userArea.innerHTML = `
+            <button class="login-btn" onclick="window.location.href='login.html'">
+                Login
+            </button>
+        `;
+    }
+}
+
+function logoutCineBook() {
+    const user = getCineBookUser();
+
+    if (!user) {
+        window.location.href = "login.html";
+        return;
+    }
+
+    const yakin = confirm(
+        "Apakah kamu yakin ingin logout dari akun CineBook?"
+    );
+
+    if (!yakin) return;
+
+    localStorage.removeItem("cinebookUser");
+    sessionStorage.removeItem("cinebookUser");
+
+    alert("✓ Kamu berhasil logout dari akun CineBook.");
+
+    window.location.href = "login.html";
+}
+
+document.addEventListener("DOMContentLoaded", updateLoginMenu);
+</script>
+
+</body>
+</html>
